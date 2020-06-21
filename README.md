@@ -8,9 +8,10 @@
 
 ## 配套文章
 
+这是仓库的配套文章
+
 - [解析在 Flutter 开发中会使用到的状态管理库——provider](https://github.com/yayxs/reading-writing/issues/10)
 
 - [真实开发场景中的 vuex 总是刷新就不在](https://github.com/yayxs/reading-writing/issues/5)
 
-- [react中redux、react-redux实操指南](https://github.com/yayxs/reading-writing/issues/11)
-
+- [react 中 redux、react-redux 实操指南](https://github.com/yayxs/reading-writing/issues/11)
