@@ -1,5 +1,5 @@
 > - **源码在 github 仓库 （[state-management-compare](https://github.com/yayxs/state-management-compare)）**    master主分支  横向对比前端开发中不同状态管理方案
-> - 原文收录在 
+> - 原文收录在  [readux  202008月版](https://github.com/yayxs/state-management-compare/tree/master/docs)
 
 [TOC]
 
