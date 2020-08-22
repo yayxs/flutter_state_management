@@ -1,11 +1,9 @@
 {
-  "name": "state-management-compare",
-  "version": "1.0.0",
+  "private": true,
+  "name": "react-state-redux",
+  "version": "1.0.9",
   "description": "一个横向对比状态管理的项目",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yayxs/state-management-compare.git"
@@ -16,7 +14,24 @@
   "bugs": {
     "url": "https://github.com/yayxs/state-management-compare/issues"
   },
-  "homepage": "https://github.com/yayxs/state-management-compare#readme",
+  "homepage": "",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/react": "^10.4.9",
+    "@testing-library/user-event": "^12.1.1",
+    "axios": "^0.20.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
+    "redux-saga": "^1.1.3",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "commitizen": "^4.1.5",
+    "husky": "^4.2.5",
+    "init": "^0.1.2"
+  },
   "devDependencies": {
     "cz-conventional-changelog": "^3.2.0"
   },
@@ -25,16 +40,29 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "commitizen": "^4.1.2",
-    "husky": "^4.2.5",
-    "init": "^0.1.2"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "update": "ncu -u"
+  },
+  "eslintConfig": {
+    "extends": "state-management-compare"
   },
   "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $GIT_PARAMS"
-    }
+    "hooks": {}
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

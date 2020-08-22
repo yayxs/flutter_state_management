@@ -1,17 +1,13 @@
-## 项目描述
+<!--
+ * @Author: yayxs
+ * @Date: 2020-06-21 09:49:23
+ * @LastEditTime: 2020-08-22 09:54:39
+ * @LastEditors: yayxs
+ * @Description:
+ * @FilePath: \state-management-compare\README.md
+ * @
+-->
 
-横向对比前端开发中不同状态管理方案，其中包括：
+# 当前所在 `react-state-redux` master 主分支
 
-- vue2.x 中的 vuex
-- react 中的 redux
-- flutter 中的 provider
-
-## 配套文章
-
-这是仓库的配套文章
-
-- [解析在 Flutter 开发中会使用到的状态管理库——provider](https://github.com/yayxs/reading-writing/issues/10)
-
-- [真实开发场景中的 vuex 总是刷新就不在](https://github.com/yayxs/reading-writing/issues/5)
-
-- [react 中 redux、react-redux 实操指南](https://github.com/yayxs/reading-writing/issues/11)
+> 主要介绍 react 中的状态管理方案-redux
