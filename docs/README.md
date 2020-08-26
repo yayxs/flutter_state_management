@@ -1,9 +1,7 @@
-> - **源码在 github 仓库 （[state-management-compare](https://github.com/yayxs/state-management-compare)）**    master主分支  横向对比前端开发中不同状态管理方案
-> - 原文收录在  [readux  202008月版](https://github.com/yayxs/state-management-compare/tree/master/docs)
+> - **源码在 github 仓库 （[state-management-compare](https://github.com/yayxs/state-management-compare)）** master 主分支 横向对比前端开发中不同状态管理方案
+> - 原文收录在 [readux 202008 月版](https://github.com/yayxs/state-management-compare/tree/master/docs)
 
 [TOC]
-
-
 
 ## 目录
 
@@ -465,10 +463,7 @@ export default connect(
     },
   })
 )(Home);
-
 ```
-
-
 
 ### 使用
 
@@ -651,7 +646,7 @@ export { infoReducer };
   export { listReducer };
   ```
 
-# 三、Redux-Saga
+## 三、Redux-Saga
 
 不管怎么说，如上提及数据流操作只支持**同步的操作**，实现异步的话就需要`中间件`
 
@@ -839,11 +834,135 @@ export function* defSage() {
 - componentDidMount 获取数据
 - componentWillUpdate 处理数据
 
-# 四、思考
+## Redux Toolkit
 
-1. Hooks API ，也就是函数式的组件怎么监听页面数据的变化 ，然后执行刷新？
-2. redux-saga 中的辅助函数 `takeEvery` `takeLatest` `throttle` 在底层有什么区别？
+在熟悉了`redux` 以及`react-redux` 之后，官方还提到了一个方案 `Redux Toolkit`,但它在社区里似乎很少使用，我们先来看看简单的计数器需要包含几部分
 
----
+```js
+// actionType
 
-感谢你看到这，不妨给个星星，感谢
+const ADD = 'ADD'
+
+// actionCreator
+
+const addAction=()=>({
+  type:ADD
+})
+// reducer
+const counterReducer=(state,action)=>{
+  switch(){
+
+  }
+}
+
+// store
+Redux.createStore(counterReducer)
+```
+
+一个简单的计数器都需要那么繁杂的操作，并且`有迹可循`，有时候我们可能还需要保证不修改传进来的`state` 借助一些第三方的库，有没有什么来简化代码呢。
+
+现在我们可以这样使用它。
+
+- app.js
+
+```jsx
+<Provider store={store}>
+    <App />
+  </Provider>,
+```
+
+- counter 组件
+
+```jsx
+import React, { memo, useState } from "react";
+
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import {
+  selectCount,
+  incrementAction,
+  incrementWithPayloadAction,
+  incrementAsyncAction,
+} from "./counterSlice"; // 导入一个counterSlice，请往下看
+
+export default memo(function Counter() {
+  // 自身状态
+  const [num, setNum] = useState(5);
+  const count = useSelector(selectCount, shallowEqual);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <hr />
+      <button onClick={() => dispatch(incrementAction())}>值+1</button>
+      <button onClick={() => dispatch(incrementWithPayloadAction(num))}>
+        值+{num}
+      </button>
+      <hr />
+      <button onClick={() => dispatch(incrementAsyncAction(100))}>+ 100</button>
+    </div>
+  );
+});
+```
+
+在组建内部，我们做的事情其实很简单，实现的效果是
+
+1. 点击按钮给某个值增加 1
+2. 点击按钮给按钮增加一个 num
+3. 点击按钮异步的增加 100
+
+这时候我们的目光就异步到 `counterSlice` 文件中
+
+```jsx
+// 从 `@reduxjs/toolkit` 包中 导入 createSlice
+import { createSlice } from "@reduxjs/toolkit";
+
+export const counterSlice = createSlice({
+  name: "counter", // 类似于命名空间
+  initialState: {
+    // 初始化的值，默认value 是1
+    value: 1,
+  },
+  reducers: {
+    // reducer合集 包括增加的action 还有根据number值增加
+    incrementAction: (state) => {
+      state.value = state.value + 1;
+    },
+    incrementWithPayloadAction: (state, { payload }) => {
+      console.log(state.value);
+      console.log(payload);
+      state.value = state.value + payload;
+    },
+  },
+});
+
+// 异步操作
+export const incrementAsyncAction = (num) => (dispatch) => {
+  console.log(num);
+  setTimeout(() => {
+    dispatch(incrementWithPayloadAction(num));
+  }, 2000);
+};
+// 导出 状态值
+export const selectCount = (state) => state.counter.value;
+
+export const {
+  incrementAction,
+  incrementWithPayloadAction,
+} = counterSlice.actions;
+export default counterSlice.reducer;
+```
+
+综上我们有几个函数需要了解一下， `configureStore` `createAction` `createReducer` ` createReducer`
+**值得注意的是即使新增了这几个概念**，但是 `redux` 本身的工作流程是没有改变的。如何处理`异步操作` 上边的例子也有说明白
+
+```jsx
+// 异步操作
+export const incrementAsyncAction = (num) => (dispatch) => {
+  console.log(num);
+  setTimeout(() => {
+    dispatch(incrementWithPayloadAction(num));
+  }, 2000);
+};
+```
+**有关上述的官方实例代码，你可以直接在本仓库的 examples/redux-template-app 查看源码学习**
