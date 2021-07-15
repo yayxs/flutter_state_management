@@ -1,21 +1,26 @@
-/*
- * @Author: yayxs
- * @Date: 2020-06-17 21:14:10
- * @LastEditTime: 2020-08-22 12:06:52
- * @LastEditors: yayxs
- * @Description:
- * @FilePath: \state-management-compare\src\index.js
- * @
- */
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-// import store from "./store/index";
-import store from './app/store';
-import { Provider } from "react-redux";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Welcome from './components/Welcome'
+// import Clock from './components/Clock'
+import Clock from './components/Clock.class'
+import Mail from './components/Mail'
+import Warn from './components/Warn'
+import List from './components/List'
+import FormComp from './components/Form'
+import Water from './components/Water'
+import Dialog from './components/Dialog'
+let element = <h1>hello</h1>
+element = <Welcome name="Wel" />
+element = <Clock />
+const msg = []
+element = <Mail unreadMessages={msg} />
+element = <Warn />
+const lists = [12,234]
+element = <List numbers={lists} />
+element = <FormComp />
+element = <Water />
+element = <Dialog />
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
+  element,
+  document.getElementById('root')
 );
