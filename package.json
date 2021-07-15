@@ -1,58 +1,26 @@
 {
-  "private": true,
-  "name": "react-state-redux",
-  "version": "1.0.9",
-  "description": "一个横向对比状态管理的项目",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yayxs/state-management-compare.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yayxs/state-management-compare/issues"
-  },
-  "homepage": "",
+  "name": "react-learn",
+  "version": "2.0.0",
   "dependencies": {
-    "@commitlint/cli": "^9.1.2",
-    "@commitlint/config-conventional": "^9.1.2",
-    "@reduxjs/toolkit": "^1.4.0",
-    "@testing-library/jest-dom": "^5.11.3",
-    "@testing-library/react": "^10.4.9",
-    "@testing-library/user-event": "^12.1.1",
-    "axios": "^0.20.0",
-    "commitizen": "^4.1.5",
-    "husky": "^4.2.5",
-    "init": "^0.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.1",
-    "react-scripts": "3.4.3",
-    "redux": "^4.0.5",
-    "redux-saga": "^1.1.3"
-  },
-  "devDependencies": {
-    "cz-conventional-changelog": "^3.2.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "update": "ncu -u"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "state-management-compare"
-  },
-  "husky": {
-    "hooks": {}
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
